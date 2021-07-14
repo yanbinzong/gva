@@ -88,21 +88,12 @@
 - dockerfile_server使用了多阶段构建，这是docker 17.05后引入的，因此安装的docker版本需要高于17.05
 - mysql数据库请使用装在服务器磁盘的本地数据库.
 	- 避免使用docker容器内的mysql,可能会出现写入的问题, io比宿主机低  docker的持久化机制问题
-<<<<<<< HEAD
-- [init.sql](.docker-compose/docker-entrypoint-initdb.d/init.sql)是给docker-compose进行<font color=red>体验本项目</font>的, 禁止[init.sql](.docker-compose/docker-entrypoint-initdb.d/init.sql)使用进行项目数据的初始化, 
-	- 使用[init.sql](.docker-compose/docker-entrypoint-initdb.d/init.sql)进行初始化出现的所有问题,请自行承担,与本项目无关
-=======
 - [init.sql](.docker-compose/docker-entrypoint-initdb.d/init.sql)是给docker-compose进行<font color=red>体验本项目</font>的, 禁止[init.sql](.docker-compose/docker-entrypoint-initdb.d/init.sql)使用进行项目数据的初始化, 数据库初始化
->>>>>>> 43c708edd6c95293fdbfd55037b4a2152927ee2a
 - 使用本项目的docker-compose进行部署时,请修改[docker-compose.yaml](./docker-compose.yaml)对应的[nginx配置](.docker-compose/nginx/conf.d/my.conf),mysql配置,networks配置,redis配置,按需自行更改.
 
 ### 2.1 web端
 
-<<<<<<< HEAD
 # enter the project directory
-=======
-```bash
->>>>>>> 43c708edd6c95293fdbfd55037b4a2152927ee2a
 cd web
 
 # install dependency
