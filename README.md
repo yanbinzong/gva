@@ -205,11 +205,11 @@ swag init
 ## 4. 项目架构
 ### 4.1 系统架构图
 
-![系统架构图](http://qmplusimg.henrongyi.top/gva/gin-vue-admin.png)
+![系统架构图](https://github.com/yanbinzong/gva/blob/master/docs/gin-vue-admin.png)
 
 ### 4.2 前端详细设计图 
 
-![前端详细设计图](http://qmplusimg.henrongyi.top/naotu.png)
+![前端详细设计图](https://github.com/yanbinzong/gva/blob/master/docs/gva-web.png)
 
 ### 4.3 目录结构
 
