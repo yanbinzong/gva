@@ -1,0 +1,151 @@
+后台
+    分支机构
+        比如 第一党支部、第二党支部等
+    题库
+       可以根据分支机构增加问题，同时可以设置相应问题的选项
+       比如 问题A所属分支机构“第一党支部”，对应的选项有“选项A”和“选项B”，“选项A”类型是上传图片，“选项B”类型自评分
+    问卷
+        增加考评问卷 比如 “第一党支部”的“党员定责赋值考评填报”问卷
+    考评
+        这个设置考评信息的，比如 “第一期考评“，“第二期考评“
+    审核
+        审核考评内容
+
+    
+      
+    
+    分支机构表
+        branch_office 
+            id
+            pid     父ID           
+            name
+            stataus
+            remarks
+            update_time
+            create_time
+        
+        id pid name     status remarks update_time          create_time
+        1  0   某某集团  1       ""     2021-06-02 12:11:39  2021-06-02 12:11:39
+        2  1   北京分部  1       ""     2021-06-02 12:11:39  2021-06-02 12:11:39
+    
+    问题类型表
+        question_type
+            id 
+            name
+            structure   类型结构 json
+            quantity    数量
+            stataus
+            remarks
+            update_time
+            create_time
+
+        id  name    structure                               quantity     stataus remarks update_time          create_time
+        1   输入框   {"value":""}                             1            1       ""     2021-06-02 12:11:39  2021-06-02 12:11:39
+        2   上传图片 {"id":"","url":""}                        2            1       ""     2021-06-02 12:11:39  2021-06-02 12:11:39
+        3   表格    {"number":"","date":"","content":""}      4             1       ""    2021-06-02 12:11:39  2021-06-02 12:11:39
+
+    问题表
+        question
+            id
+            branch_office_id    分支机构表关联id branch_office.id
+            name
+            stataus
+            remarks
+            update_time
+            create_time
+
+        id  branch_office_id    name         stataus  remarks update_time          create_time
+        1   1                   参加党员活动   1        ""      2021-06-02 12:11:39  2021-06-02 12:11:39 
+        2   2                   参加党员会议1  1        ""      2021-06-02 12:11:39  2021-06-02 12:11:39
+        3   2                   参加党员会议2  1        ""      2021-06-02 12:11:39  2021-06-02 12:11:39
+
+    问题选项表
+        question_options
+            id
+            question_id  问题表的关联id question.id
+            question_type_id    问题类型表关联id question_type.id   
+            name
+            update_time
+            create_time
+
+        id  question_id     question_type_id    name         update_time          create_time
+        1   1               1                   参加大会次数   2021-06-02 12:11:39  2021-06-02 12:11:39
+        2   1               1                   参加会议次数   2021-06-02 12:11:39  2021-06-02 12:11:39
+        3   2               1                   次数          2021-06-02 12:11:39  2021-06-02 12:11:39
+        4   2               3                   信息表格       2021-06-02 12:11:39  2021-06-02 12:11:39
+        5   3               2                   证书1         2021-06-02 12:11:39  2021-06-02 12:11:39
+        6   3               2                   证书2         2021-06-02 12:11:39  2021-06-02 12:11:39
+
+    问卷信息表
+        questionnaire
+            id
+            branch_office_id    分支机构表关联id branch_office.id
+            name        
+            stataus     0 未发布 1发布
+            remarks
+            start_time  开始时间
+            end_time    结束时间      
+            update_time
+            create_time
+        
+        id  branch_office_id  name          stataus   remarks  start_time           end_time             update_time          create_time
+        1   2                 第三季度考核    1         1        2021-06-02 12:11:39  2021-06-02 12:11:39  2021-06-02 12:11:39  2021-06-02 12:11:39
+
+    问卷问题关联表
+        questionnaire_question
+            id
+            question_id  问题表的关联id question.id
+            questionnaire_id    问卷信息表关联Id questionnaire.id
+            status
+            update_time
+            create_time
+
+        id question_id  questionnaire_id    status  update_time          create_time
+        1   1           1                   1       2021-06-02 12:11:39  2021-06-02 12:11:39
+        2   2           1                   1       2021-06-02 12:11:39  2021-06-02 12:11:39
+        2   3           1                   1       2021-06-02 12:11:39  2021-06-02 12:11:39
+
+    用户问卷表
+        user_questionnaire
+            id
+            user_id 用户表的关联id users.id
+            questionnaire_id    问卷信息表关联Id questionnaire.id
+            score   问卷分数
+            signature 签名 附件id
+            status      0 未开始 1进行中 2审核 3完成
+            update_time
+            create_time
+        id  user_id questionnaire_id    status  update_time          create_time
+        1   1       1                   0       2021-06-02 12:11:39  2021-06-02 12:11:39
+    
+    用户回答问题表
+        user_questionnaire_question
+            id
+            user_id 用户表的关联id users.id
+            questionnaire_id    问卷信息表关联Id questionnaire.id
+            question_id  问题表的关联id question.id
+            answer_content 回答内容 json
+            score   问题分数
+            update_time
+            create_time
+    
+    用户表
+        users
+            id
+            branch_office_id    分支机构表关联id branch_office.id
+            name
+            sex
+            age
+            phone
+            score   总分数
+            update_time
+            create_time
+
+    上传附件表
+        attachment
+            id
+            type  1文件 2图片 3签名图片
+            url
+            status 状态 0未使用 1已使用 3删除
+            update_time
+            create_time           
